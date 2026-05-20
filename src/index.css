@@ -4,15 +4,120 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   
-  --color-brand-blue: #1e3a8a; /* blue-900 */
-  --color-brand-blue-light: #3b82f6; /* blue-500 */
-  --color-brand-blue-dark: #172554; /* blue-950 */
-  --color-brand-black: #0f172a; /* slate-900 */
-  --color-brand-black-dark: #020617; /* slate-950 */
+  /* Wine & White palette */
+  --color-brand-blue: #722F37; /* primary wine (used as brand color) */
+  --color-brand-blue-light: #B66A6E; /* lighter wine / hover */
+  --color-brand-blue-dark: #481017; /* dark wine for strong accents */
+  /* backgrounds: deep wine tones for primary dark surfaces */
+  --color-brand-black: #3B1B1E; /* mid wine */
+  --color-brand-black-dark: #2A0D0F; /* deep wine (page background) */
+
+  /* Alternative light background (use where soft background is desired) */
+  --color-off-white: #FAF6F6; /* soft off-white */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Mobile optimizations for screens below 768px */
+@media (max-width: 767px) {
+  /* Prevent horizontal overflow */
+  html, body, #root {
+    overflow-x: hidden !important;
+  }
+
+  /* Hero: make shorter and reduce top spacing */
+  #home {
+    height: auto !important;
+    min-height: 65vh !important;
+  }
+
+  #home .hero-inner {
+    margin-top: 2rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Reduce prominent heading / paragraph sizes on mobile */
+  #home h1, .text-5xl {
+    font-size: 1.75rem !important; /* ~28px */
+    line-height: 1.05 !important;
+  }
+  .text-4xl {
+    font-size: 1.5rem !important; /* ~24px */
+  }
+  .text-3xl {
+    font-size: 1.25rem !important; /* ~20px */
+  }
+  .text-2xl {
+    font-size: 1.125rem !important; /* ~18px */
+  }
+
+  #home p, .text-lg, .text-xl {
+    font-size: 0.95rem !important;
+  }
+
+  /* Buttons: slightly smaller padding on mobile */
+  #home a, .bg-white.border, .flex .w-full.sm\:w-auto {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce large vertical spacing across sections */
+  section, .py-24 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Scale down tall images and card heights */
+  .h-64 {
+    height: 12rem !important; /* from 16rem to 12rem */
+  }
+  .h-screen {
+    height: auto !important;
+    min-height: 65vh !important;
+  }
+
+  /* Avoid forcing height:auto on absolutely-positioned or object-cover images
+     which need height:100% to fill their containers (slideshow images). Only
+     constrain regular images so they don't overflow on small screens. */
+  img:not(.absolute):not(.object-cover) {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Keep aspect ratios so image containers (carousels) retain height on mobile */
+  .aspect-\[4\/5\] { aspect-ratio: 4 / 5 !important; }
+  .aspect-square { aspect-ratio: 1 / 1 !important; }
+
+  /* Reduce card padding and gaps */
+  .p-6 { padding: 0.75rem !important; }
+  .gap-16 { gap: 1rem !important; }
+  .gap-8 { gap: 0.5rem !important; }
+  .gap-4 { gap: 0.5rem !important; }
+
+  /* Floating action button smaller and shifted in from edges */
+  a.fixed.bottom-8.right-6 {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    padding: 0.6rem !important;
+  }
+
+  /* Map container: reduce min height to avoid large empty areas */
+  .min-h-\[400px\], .h-\[400px\], .h-\[400px\] {
+    min-height: 220px !important;
+    height: 220px !important;
+  }
+
+  /* Navigation: slightly smaller brand text on mobile */
+  nav .font-serif { font-size: 1.05rem !important; }
+
+  /* Fix potential horizontal overflow from large transforms */
+  .group-hover\:scale-110, .transform { backface-visibility: hidden; }
+
+  /* Misc: ensure container padding fits small screens */
+  .max-w-7xl { padding-left: 1rem !important; padding-right: 1rem !important; }
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, MapPin, Phone, Mail, Wifi, Coffee, Car, Tv, Wind, CheckCircle2, Star, ChevronRight, Map, Clock, CalendarDays, Users } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, Wifi, Car, Tv, Wind, CheckCircle2, Star, ChevronRight, Map, Clock, CalendarDays, Users } from 'lucide-react';
+import { siteImages } from './assets/site-images';
 
 const RoomImageSlider = ({ images, title }: { images: string[], title: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,7 +24,7 @@ const RoomImageSlider = ({ images, title }: { images: string[], title: string })
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
           src={images[currentIndex]}
-          alt={`₵{title} view ₵{currentIndex + 1}`}
+          alt={`${title} view ${currentIndex + 1}`}
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           referrerPolicy="no-referrer"
         />
@@ -37,8 +38,8 @@ const RoomImageSlider = ({ images, title }: { images: string[], title: string })
               e.stopPropagation();
               setCurrentIndex(idx);
             }}
-            className={`h-1.5 rounded-full transition-all duration-300 ₵{idx === currentIndex ? 'bg-white w-4' : 'bg-white/40 w-1.5 hover:bg-white/70'}`}
-            aria-label={`Go to image ₵{idx + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-white w-4' : 'bg-white/40 w-1.5 hover:bg-white/70'}`}
+            aria-label={`Go to image ${idx + 1}`}
           />
         ))}
       </div>
@@ -51,12 +52,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [welcomeSlideIndex, setWelcomeSlideIndex] = useState(0);
 
-  const welcomeImages = [
-    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop",
-    "https://plus.unsplash.com/premium_photo-1675745329378-5573c360f69f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1676321688630-9558e7d2be10?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1606046604972-77cc76aee944?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  ];
+  const welcomeImages = siteImages.welcomeCarousel;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,11 +80,11 @@ export default function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-brand-black-dark text-slate-300 font-sans selection:bg-brand-blue-light selection:text-white">
+      <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-brand-blue-light selection:text-white">
       {/* Navigation */}
       <nav
         className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-brand-black-dark/95 backdrop-blur-md py-4 shadow-lg shadow-black/50 border-b border-white/5' : 'bg-transparent py-6'
+          isScrolled ? 'bg-white/95 backdrop-blur-md py-4 shadow-md shadow-gray-200 border-b border-gray-100' : 'bg-transparent py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,8 +93,8 @@ export default function App() {
               <div className="w-10 h-10 bg-brand-blue flex items-center justify-center rounded-sm transform rotate-45 group-hover:rotate-90 transition-transform duration-500">
                 <div className="w-4 h-4 border-2 border-white transform -rotate-45"></div>
               </div>
-              <span className="font-serif text-2xl font-bold text-white tracking-wider ml-2">
-                The Stone Tavern
+              <span className="font-serif text-2xl font-bold text-gray-900 tracking-wider ml-2">
+                Vihills Hotel
               </span>
             </a>
 
@@ -108,14 +104,14 @@ export default function App() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group"
+                  className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors relative group"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue-light transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
               <a
-                href="https://wa.me/233303944689"
+                href="https://wa.me/233548382022"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-5 py-2 rounded-sm font-medium transition-all duration-300 shadow-lg shadow-[#25D366]/20 flex items-center gap-2 text-sm hover:scale-105"
@@ -131,7 +127,7 @@ export default function App() {
             <div className="md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-slate-300 hover:text-white p-2"
+                className="text-gray-700 hover:text-gray-900 p-2"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -146,7 +142,7 @@ export default function App() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-brand-black-dark border-b border-white/10 overflow-hidden"
+              className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
             >
               <div className="px-4 pt-2 pb-6 space-y-1">
                 {navLinks.map((link) => (
@@ -154,14 +150,14 @@ export default function App() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-md"
+                    className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md"
                   >
                     {link.name}
                   </a>
                 ))}
                 <div className="pt-4 pb-2 px-3">
                   <a
-                    href="https://wa.me/233303944689"
+                    href="https://wa.me/233548382022"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMobileMenuOpen(false)}
@@ -183,12 +179,11 @@ export default function App() {
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Luxury Guest House Exterior"
+            src={siteImages.heroBanner}
+            alt="Vihills Hotel exterior"
             className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-brand-black-dark"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-transparent"></div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
@@ -207,13 +202,13 @@ export default function App() {
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight text-balance">
               Where Elegance Meets Comfort
             </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light">
-              Experience unparalleled luxury and tranquility at The Stone Tavern. Your perfect escape from the ordinary.
+            <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-light">
+              Experience unparalleled luxury and tranquility at Vihills Hotel. Your perfect escape from the ordinary.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="#rooms"
-                className="w-full sm:w-auto bg-brand-blue hover:bg-brand-blue-light text-white px-8 py-4 rounded-sm font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-brand-blue/20 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-white border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-8 py-4 rounded-sm font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-sm shadow-brand-blue/10 flex items-center justify-center gap-2"
               >
                 View Rooms <ChevronRight size={18} />
               </a>
@@ -234,7 +229,7 @@ export default function App() {
       </section>
 
       {/* Introduction */}
-      <section className="py-24 bg-brand-black-dark relative">
+      <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -243,18 +238,18 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-brand-blue-light font-medium tracking-widest uppercase mb-3 text-sm">Welcome to The Stone Tavern</h2>
-              <h3 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+              <h2 className="text-brand-blue-light font-medium tracking-widest uppercase mb-3 text-sm">Welcome to Vihills Hotel</h2>
+              <h3 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6 leading-tight">
                 A Sanctuary of <br/><span className="text-brand-blue-light italic">Refined Luxury</span>
               </h3>
-              <p className="text-slate-400 mb-6 leading-relaxed">
-                Nestled in the heart of the city yet feeling worlds away, The Stone Tavern Guest House offers an intimate retreat for discerning travelers. Our historic property has been meticulously restored to blend classic architectural charm with contemporary sophistication.
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Nestled in the heart of the city yet feeling worlds away, Vihills Hotel offers an intimate retreat for discerning travelers. Our historic property has been meticulously restored to blend classic architectural charm with contemporary sophistication.
               </p>
               <p className="text-slate-400 mb-8 leading-relaxed">
                 Whether you're visiting for business or leisure, our dedicated team ensures every aspect of your stay is flawless, providing personalized service that anticipates your every need.
               </p>
               
-              <div className="grid grid-cols-2 gap-6 border-t border-white/10 pt-8">
+              <div className="grid grid-cols-2 gap-6 border-t border-gray-100 pt-8">
                 <div>
                   <h4 className="text-3xl font-serif text-white mb-1">15+</h4>
                   <p className="text-sm text-slate-500 uppercase tracking-wider">Luxury Rooms</p>
@@ -273,7 +268,7 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-[4/5] overflow-hidden rounded-sm relative z-10 bg-brand-black">
+              <div className="aspect-[4/5] overflow-hidden rounded-sm relative z-10 bg-white">
                 <AnimatePresence mode="wait">
                   <motion.img 
                     key={welcomeSlideIndex}
@@ -282,7 +277,7 @@ export default function App() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
                     src={welcomeImages[welcomeSlideIndex]} 
-                    alt={`Guest House Interior ${welcomeSlideIndex + 1}`} 
+                    alt={`Vihills Hotel interior ${welcomeSlideIndex + 1}`} 
                     className="w-full h-full object-cover absolute inset-0"
                     referrerPolicy="no-referrer"
                   />
@@ -320,35 +315,30 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-            {/* Room 1 */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 auto-rows-fr">
+            {/* Room 1 — Standard Room */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-brand-black-dark border border-white/5 rounded-sm overflow-hidden group"
+              className="bg-white border border-gray-100 rounded-sm overflow-hidden group h-full flex flex-col"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64 overflow-hidden shrink-0">
                 <RoomImageSlider 
-                  images={[
-                    "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?q=80&w=2070&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=2070&auto=format&fit=crop"
-                  ]} 
-                  title="Deluxe Double Room" 
+                  images={[...siteImages.rooms.standardRoom]} 
+                  title="Standard Room" 
                 />
                 <div className="absolute top-4 right-4 bg-brand-blue text-white text-sm font-medium px-3 py-1 rounded-sm">
-                  ₵150 / night
+                  ₵300 / night
                 </div>
               </div>
-              <div className="p-6">
-                <h4 className="text-2xl font-serif text-white mb-2 group-hover:text-brand-blue-light transition-colors">Deluxe Double</h4>
+              <div className="p-6 flex flex-col flex-1">
+                <h4 className="text-2xl font-serif text-white mb-2 group-hover:text-brand-blue-light transition-colors">Standard Room</h4>
                 <p className="text-slate-400 text-sm mb-6 line-clamp-2">
-                  Perfect for couples, featuring a king-size bed, city views, and a spacious en-suite bathroom with a rainfall shower.
+                  A well-appointed standard with a comfortable bed, crisp linens, and everything you need for a restful stay.
                 </p>
-                <div className="flex items-center gap-4 text-slate-500 mb-6 pb-6">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-500 mt-auto mb-6 pb-6">
                   <div className="flex items-center gap-1.5 text-xs"><Wifi size={14} /> WiFi</div>
                   <div className="flex items-center gap-1.5 text-xs"><Tv size={14} /> Smart TV</div>
                   <div className="flex items-center gap-1.5 text-xs"><Wind size={14} /> AC</div>
@@ -356,71 +346,91 @@ export default function App() {
               </div>
             </motion.div>
 
-            {/* Room 2 */}
+            {/* Room 2 — Standard Double */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-brand-black-dark border border-white/5 rounded-sm overflow-hidden group"
+              className="bg-white border border-gray-100 rounded-sm overflow-hidden group h-full flex flex-col"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64 overflow-hidden shrink-0">
                 <RoomImageSlider 
-                  images={[
-                    "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1560067174-c5a3a8f37060?q=80&w=2070&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop"
-                  ]} 
-                  title="Executive Suite" 
+                  images={[...siteImages.rooms.standardDouble]} 
+                  title="Standard Double" 
                 />
                 <div className="absolute top-4 right-4 bg-brand-blue text-white text-sm font-medium px-3 py-1 rounded-sm">
-                  ₵250 / night
+                  ₵350 / night
                 </div>
               </div>
-              <div className="p-6">
-                <h4 className="text-2xl font-serif text-white mb-2 group-hover:text-brand-blue-light transition-colors">Executive Suite</h4>
+              <div className="p-6 flex flex-col flex-1">
+                <h4 className="text-2xl font-serif text-white mb-2 group-hover:text-brand-blue-light transition-colors">Standard Double</h4>
                 <p className="text-slate-400 text-sm mb-6 line-clamp-2">
-                  Our most luxurious offering with a separate living area, panoramic views, premium minibar, and a deep soaking tub.
+                  A welcoming double room with modern comforts—ideal for couples or two guests traveling together.
                 </p>
-                <div className="flex items-center gap-4 text-slate-500 mb-6 pb-6">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-500 mt-auto mb-6 pb-6">
                   <div className="flex items-center gap-1.5 text-xs"><Wifi size={14} /> WiFi</div>
-                  <div className="flex items-center gap-1.5 text-xs"><Coffee size={14} /> Minibar</div>
-                  <div className="flex items-center gap-1.5 text-xs"><Tv size={14} /> 65" TV</div>
+                  <div className="flex items-center gap-1.5 text-xs"><Tv size={14} /> Smart TV</div>
+                  <div className="flex items-center gap-1.5 text-xs"><Wind size={14} /> AC</div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Room 3 */}
+            {/* Room 3 — Superior Double */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-brand-black-dark border border-white/5 rounded-sm overflow-hidden group"
+              className="bg-white border border-gray-100 rounded-sm overflow-hidden group h-full flex flex-col"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64 overflow-hidden shrink-0">
                 <RoomImageSlider 
-                  images={[
-                    "https://plus.unsplash.com/premium_photo-1663126298656-33616be83c32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=2069&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=2057&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop"
-                  ]} 
-                  title="Classic Single" 
+                  images={[...siteImages.rooms.superiorDouble]} 
+                  title="Superior Double" 
                 />
                 <div className="absolute top-4 right-4 bg-brand-blue text-white text-sm font-medium px-3 py-1 rounded-sm">
-                  ₵100 / night
+                  ₵500 / night
                 </div>
               </div>
-              <div className="p-6">
-                <h4 className="text-2xl font-serif text-white mb-2 group-hover:text-brand-blue-light transition-colors">Classic Single</h4>
+              <div className="p-6 flex flex-col flex-1">
+                <h4 className="text-2xl font-serif text-white mb-2 group-hover:text-brand-blue-light transition-colors">Superior Double</h4>
                 <p className="text-slate-400 text-sm mb-6 line-clamp-2">
-                  Cozy and elegantly appointed, ideal for solo travelers or business trips. Features a queen bed and dedicated workspace.
+                  Refined double accommodation with elevated finishes, extra space, and a calm atmosphere for discerning guests.
                 </p>
-                <div className="flex items-center gap-4 text-slate-500 mb-6 pb-6">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-500 mt-auto mb-6 pb-6">
                   <div className="flex items-center gap-1.5 text-xs"><Wifi size={14} /> WiFi</div>
                   <div className="flex items-center gap-1.5 text-xs"><Tv size={14} /> TV</div>
+                  <div className="flex items-center gap-1.5 text-xs"><Wind size={14} /> AC</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Room 4 — Deluxe Room */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="bg-white border border-gray-100 rounded-sm overflow-hidden group h-full flex flex-col"
+            >
+              <div className="relative h-64 overflow-hidden shrink-0">
+                <RoomImageSlider 
+                  images={[...siteImages.rooms.deluxeRoom]} 
+                  title="Deluxe Room" 
+                />
+                <div className="absolute top-4 right-4 bg-brand-blue text-white text-sm font-medium px-3 py-1 rounded-sm">
+                  ₵700 / night
+                </div>
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <h4 className="text-2xl font-serif text-white mb-2 group-hover:text-brand-blue-light transition-colors">Deluxe Room</h4>
+                <p className="text-slate-400 text-sm mb-6 line-clamp-2">
+                  Our deluxe category with premium bedding, generous layout, and enhanced details for an elevated stay.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-500 mt-auto mb-6 pb-6">
+                  <div className="flex items-center gap-1.5 text-xs"><Wifi size={14} /> WiFi</div>
+                  <div className="flex items-center gap-1.5 text-xs"><Tv size={14} /> Smart TV</div>
                   <div className="flex items-center gap-1.5 text-xs"><Wind size={14} /> AC</div>
                 </div>
               </div>
@@ -454,7 +464,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="p-6 bg-brand-black-dark border border-white/5 rounded-sm text-center group hover:border-brand-blue/50 transition-colors"
+                className="p-6 bg-white border border-gray-100 rounded-sm text-center group hover:border-brand-blue/50 transition-colors"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-blue/10 text-brand-blue-light mb-4 group-hover:scale-110 transition-transform duration-300">
                   {amenity.icon}
@@ -468,7 +478,7 @@ export default function App() {
       </section>
 
       {/* Special Events Section */}
-      <section id="events" className="py-24 bg-brand-black-dark">
+      <section id="events" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.div
@@ -480,7 +490,7 @@ export default function App() {
               <h2 className="text-brand-blue-light font-medium tracking-widest uppercase mb-3 text-sm">Unforgettable Moments</h2>
               <h3 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Special Events</h3>
               <p className="text-slate-400">
-                The Stone Tavern Guest House offers a picturesque setting for your most memorable occasions. From intimate ceremonies to grand celebrations, our versatile spaces and dedicated team ensure your event is nothing short of perfection.
+                Vihills Hotel offers a picturesque setting for your most memorable occasions. From intimate ceremonies to grand celebrations, our versatile spaces and dedicated team ensure your event is nothing short of perfection.
               </p>
             </motion.div>
           </div>
@@ -490,17 +500,17 @@ export default function App() {
               {
                 title: 'Weddings',
                 desc: 'Exchange vows in our stunning outdoor gardens or elegant indoor spaces, creating the perfect backdrop for your special day.',
-                img: 'https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                img: siteImages.events.weddings
               },
               {
                 title: 'Wedding Receptions',
                 desc: 'Celebrate your union with a bespoke dining experience, featuring exquisite catering and a beautifully decorated venue.',
-                img: 'https://images.unsplash.com/photo-1723832348105-2e69f948135a?q=80&w=2024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                img: siteImages.events.receptions
               },
               {
                 title: 'Private Parties',
                 desc: 'Host birthdays, anniversaries, or corporate gatherings in our exclusive event spaces designed to impress your guests.',
-                img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                img: siteImages.events.parties
               }
             ].map((event, index) => (
               <motion.div
@@ -545,7 +555,7 @@ export default function App() {
               <h2 className="text-brand-blue-light font-medium tracking-widest uppercase mb-3 text-sm">Location</h2>
               <h3 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Find Your Way to Us</h3>
               <p className="text-slate-400 mb-8">
-                The Stone Tavern is conveniently located in the historic district, just minutes away from major attractions, dining, and shopping venues.
+                Vihills Hotel is conveniently located in the historic district, just minutes away from major attractions, dining, and shopping venues.
               </p>
 
               <div className="space-y-6 mb-8">
@@ -555,7 +565,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="text-white font-medium text-lg mb-1">Address</h4>
-                    <p className="text-slate-400">Off Nsawam - Aburi Rd, Nsawam<br/>RM79+4R Nsawam</p>
+                    <p className="text-slate-400">obolo block factory, Weija-Gbawe, Accra</p>
                   </div>
                 </div>
               </div>
@@ -571,14 +581,14 @@ export default function App() {
               {/* Google Map */}
               <div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.303345211559!2d-0.3329878264442942!3d5.812765894170202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf0b68baee2ef9%3A0x12bcc982f2788b74!2sThe%20Stone%20Tavern!5e0!3m2!1sen!2sgh!4v1775200909254!5m2!1sen!2sgh" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.1973096682173!2d-0.35831962650224897!3d5.537729633836218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdfbdea27f91c27%3A0xfd797a55b0ee0544!2sVihills%20hotel!5e0!3m2!1sen!2sgh!4v1779283973798!5m2!1sen!2sgh" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) contrast(80%)' }} 
                   allowFullScreen={true} 
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="The Stone Tavern Location"
+                  title="Vihills Hotel location"
                 ></iframe>
               </div>
             </motion.div>
@@ -608,7 +618,7 @@ export default function App() {
                 </div>
                 <div>
                   <h4 className="text-white font-medium text-lg">Phone</h4>
-                  <p className="text-slate-400">0303944689</p>
+                  <p className="text-slate-400">0548382022</p>
                 </div>
               </div>
               
@@ -618,7 +628,7 @@ export default function App() {
                 </div>
                 <div>
                   <h4 className="text-white font-medium text-lg">Email</h4>
-                  <p className="text-slate-400">thestonetaverngh@gmail.com</p>
+                  <p className="text-slate-400">jbuafi@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -627,7 +637,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-brand-black-dark pt-16 pb-8 border-t border-white/5">
+      <footer className="bg-gray-50 pt-16 pb-8 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
             
@@ -638,11 +648,11 @@ export default function App() {
                   <div className="w-3 h-3 border-2 border-white transform -rotate-45"></div>
                 </div>
                 <span className="font-serif text-xl font-bold text-white tracking-wider ml-2">
-                  The Stone Tavern
+                  Vihills Hotel
                 </span>
               </div>
               <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-md">
-                A luxury guest house offering an unforgettable experience of comfort, elegance, and personalized service.
+                A luxury hotel offering an unforgettable experience of comfort, elegance, and personalized service.
               </p>
               <div className="flex gap-4">
                 {/* Social Icons Placeholders */}
@@ -663,15 +673,15 @@ export default function App() {
               <ul className="space-y-4 mb-10">
                 <li className="flex items-start gap-3 text-slate-400 text-sm">
                   <MapPin size={18} className="text-brand-blue-light shrink-0 mt-0.5" />
-                  <span>Off Nsawam - Aburi Rd, Nsawam<br/>RM79+4R Nsawam</span>
+                  <span>obolo block factory, Weija-Gbawe, Accra</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400 text-sm">
                   <Phone size={18} className="text-brand-blue-light shrink-0" />
-                  <span>0303944689</span>
+                  <span>0548382022</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400 text-sm">
                   <Mail size={18} className="text-brand-blue-light shrink-0" />
-                  <span>thestonetaverngh@gmail.com</span>
+                  <span>jbuafi@gmail.com</span>
                 </li>
               </ul>
 
@@ -690,7 +700,7 @@ export default function App() {
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-500 text-sm">
-              &copy; {new Date().getFullYear()} The Stone Tavern Guest House. All rights reserved.
+              &copy; {new Date().getFullYear()} Vihills Hotel. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-slate-500">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
@@ -703,7 +713,7 @@ export default function App() {
     
     {/* Floating WhatsApp Button */}
     <a
-      href="https://wa.me/233303944689"
+      href="https://wa.me/233548382022"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-6 md:bottom-10 md:right-10 z-[99999] bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_14px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
