@@ -3,7 +3,7 @@
  * Canonical room keys: standard-room.jpeg, standard-double.jpeg, superior-double.jpeg
  * (plus numbered variants for carousels where available).
  */
-import heroBanner from './images/vihillshotelhomeimage1.jpeg';
+import heroBanner from './images/vihillshotelheroimagecurrent.jpeg';
 
 import welcome1 from './images/vihillshotelhomeimage1.jpeg';
 import welcome2 from './images/vihillsroomview.jpeg';
